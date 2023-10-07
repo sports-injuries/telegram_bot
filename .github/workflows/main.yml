@@ -21,7 +21,7 @@ jobs:
         run: flake8 .
 
   types:
-    runs-on: ubuntu_latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Set up python

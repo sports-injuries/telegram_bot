@@ -16,7 +16,9 @@ jobs:
         with:
           python-version: 3.11
       - name: Install requirements
-        run: flake 8 .
+        run: pip install -r requirements.txt
+      - name: Run flake8
+        run: flake8 .
 
   types:
     runs-on: ubuntu_latest

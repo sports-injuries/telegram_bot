@@ -3,3 +3,5 @@ flake8==6.1.0
 flake8-quotes==3.3.2
 flake8-print==5.0.0
 mypy==1.5.1
+pydantic==1.10.2
+httpx==0.25.0

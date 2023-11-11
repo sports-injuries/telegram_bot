@@ -1,4 +1,3 @@
-from telegram_bot.conversation.errors import AppError
 from telegram import ReplyKeyboardRemove, Update
 from telegram.ext import (
     CallbackContext,
@@ -7,14 +6,16 @@ from telegram.ext import (
 
 from telegram_bot.conversation.schemas import JSON
 from telegram_bot.conversation import states
+from telegram_bot.clients.api import client as api
 
 
 def team_choice(update: Update, context: CallbackContext[JSON, JSON, JSON]) -> int:
-    question = 'Какую команду?'
-    if context.user_data is not None:
-        context.user_data['team'] = update.message.text
-    else:
-        raise AppError('empty context.user_data')
+    assert update.message is not None
+    assert context.user_data is not None
+
+    teams = api.teams.get_all()
+    team_names = [team.name for team in teams]
+    question = 'Какую команду из {teams}?'.format(teams=','.join(team_names))
     update.message.reply_text(question, reply_markup=ReplyKeyboardRemove())
 
     return states.TEAM_STAT

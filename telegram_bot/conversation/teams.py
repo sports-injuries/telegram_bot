@@ -15,7 +15,7 @@ def team_choice(update: Update, context: CallbackContext[JSON, JSON, JSON]) -> i
 
     teams = api.teams.get_all()
     team_names = [team.name for team in teams]
-    question = 'Какую команду из {teams}?'.format(teams=','.join(team_names))
+    question = 'Выбери одну из следующих команд:\n{teams}'.format(teams='\n'.join(team_names))
     update.message.reply_text(question, reply_markup=ReplyKeyboardRemove())
 
     return states.TEAM_STAT

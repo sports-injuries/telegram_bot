@@ -14,8 +14,8 @@ conv_handler = ConversationHandler(
     entry_points=[CommandHandler('start', start)],
     states={
         states.CHOOSING: [
-            MessageHandler(Filters.regex('^(Team)$'), team_choice),
-            MessageHandler(Filters.regex('^(Player)$'), player_choice),
+            MessageHandler(Filters.regex('^(Получить статистику по команде)$'), team_choice),
+            MessageHandler(Filters.regex('^(Получить статистику по игроку)$'), player_choice),
         ],
         states.TEAM_STAT: [
             MessageHandler(Filters.text, team_stat)
